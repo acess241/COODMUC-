@@ -36,6 +36,18 @@
             max-width: 800px;
             border-radius: 8px;
         }
+        .highlight-closed {
+            background-color: #FFCDD2;
+            border: 2px solid #D32F2F;
+            color: #D32F2F;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 8px;
+        }
         main {
             max-width: 900px;
             margin: auto;
@@ -77,6 +89,10 @@
             border-radius: 5px;
             cursor: pointer;
             margin-top: 10px;
+        }
+        .info button:disabled {
+            background-color: #D32F2F;
+            cursor: not-allowed;
         }
         .info button:hover {
             background-color: #E64A19;
@@ -134,6 +150,19 @@
         .cancel-button:hover {
             background-color: #ccc;
         }
+        #contador {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #FF5722;
+            text-align: center;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .hora-atendimento {
+            font-size: 1.2em;
+            color: #FF5722;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -141,164 +170,205 @@
         <img src="https://i.postimg.cc/Y0vDktML/ololol.jpg" alt="Logo CODEMUC">
     </header>
 
-    <div class="highlight">
-        Horário de atendimento: das 6:00 às 19:00. Agora são: <span id="horarioAtual"></span>
+    <div id="horarioAtendimento" class="highlight">
+        Horário de atendimento: das 6:00 às 19:00. Agora são: <span id="horaAtual"></span>
+    </div>
+
+    <div id="horarioFechado" class="highlight-closed" style="display: none;">
+        O atendimento está fechado. Por favor, volte entre 6:00 e 19:00. Faltam: <span id="contador"></span> para abrir novamente.
     </div>
 
     <main>
-        <!-- Aba Uauá [SEDE] -->
         <div class="tab">
             <h2>Mototáxis Disponíveis - Uauá [SEDE]</h2>
-
-            <!-- Mototáxi de Victor Pereira -->
+            
+            <!-- Rodrigo -->
             <div class="block">
-                <img src="https://i.postimg.cc/wThbNdLQ/IMG-1764.jpg" alt="Mototáxi de Victor Pereira">
+                <img src="https://i.postimg.cc/gJN6LRs1/IMG-2058.jpg" alt="Mototáxi de Rodrigo">
                 <div class="info">
-                    <p><strong>Victor Pereira</strong> - Disponível 🟢</p>
-                    <p>Modelo: Fan 160</p>
+                    <p><strong>Rodrigo</strong> - Disponível 🟢</p>
+                    <p>Modelo: Honda Bros 160</p>
                     <p>Valor: R$ 5,00</p>
-                    <button onclick="abrirModal('Victor Pereira', '+5574999442662')">Finalizar Corrida</button>
+                    <button id="btnRodrigo" onclick="abrirModal('Rodrigo', '+5574999441000')" disabled>Finalizar Corrida</button>
                 </div>
             </div>
 
-            <!-- Mototáxi de Rodrigo da Silva -->
+            <!-- Joseilton -->
             <div class="block">
-                <img src="https://i.postimg.cc/gJN6LRs1/IMG-2058.jpg" alt="Mototáxi de Rodrigo da Silva">
+                <img src="https://i.postimg.cc/BvBKrh9y/IMG-1762.jpg" alt="Mototáxi de Joseilton">
                 <div class="info">
-                    <p><strong>Rodrigo da Silva</strong> - Disponível 🟢</p>
-                    <p>Modelo: Fan 160 Vermelha</p>
+                    <p><strong>Joseilton</strong> - Disponível 🟢</p>
+                    <p>Modelo: Yamaha Factor 125</p>
                     <p>Valor: R$ 5,00</p>
-                    <button onclick="abrirModal('Rodrigo da Silva', '+5574999876030')">Finalizar Corrida</button>
+                    <button id="btnJoseilton" onclick="abrirModal('Joseilton', '+5574999443000')" disabled>Finalizar Corrida</button>
                 </div>
             </div>
 
-            <!-- Mototáxi de Joseilton Santos -->
+            <!-- Victor -->
             <div class="block">
-                <img src="https://i.postimg.cc/Dz3DDwhD/IMG-1762.jpg" alt="Mototáxi de Joseilton Santos">
+                <img src="https://i.postimg.cc/RFqDspN1/IMG-1764.jpg" alt="Mototáxi de Victor">
                 <div class="info">
-                    <p><strong>Joseilton Santos</strong> - Disponível 🟢</p>
-                    <p>Modelo: Titan 150</p>
+                    <p><strong>Victor</strong> - Disponível 🟢</p>
+                    <p>Modelo: Honda Fan 160</p>
                     <p>Valor: R$ 5,00</p>
-                    <button onclick="abrirModal('Joseilton Santos', '+5574999123143')">Finalizar Corrida</button>
+                    <button id="btnVictor" onclick="abrirModal('Victor', '+5574999444000')" disabled>Finalizar Corrida</button>
                 </div>
             </div>
         </div>
 
-        <!-- Aba Caratacá -->
+        <!-- Caratacá [Interior] -->
         <div class="tab">
-            <h2>Mototáxi Disponível - Caratacá</h2>
+            <h2>Mototáxi Disponível - Caratacá [Interior]</h2>
 
-            <!-- Mototáxi de Samuel Araujo Silva -->
+            <!-- Samuel -->
             <div class="block">
-                <img src="https://i.postimg.cc/gcSbND0r/IMG-2063.jpg" alt="Mototáxi de Samuel Araujo Silva">
+                <img src="https://i.postimg.cc/gcSbND0r/IMG-2063.jpg" alt="Mototáxi de Samuel">
                 <div class="info">
-                    <p><strong>Samuel Araujo Silva</strong> - Disponível 🟢</p>
-                    <p>Modelo: CG FAN 125 Vermelha</p>
-                    <p>Valor: Combinar com o mototaxista</p>
-                    <button onclick="abrirModal('Samuel Araujo Silva', '+5574999421283')">Finalizar Corrida</button>
+                    <p><strong>Samuel</strong> - Disponível 🟢</p>
+                    <p>Modelo: Honda Fan 150</p>
+                    <p>Valor: R$ 5,00</p>
+                    <button id="btnSamuel" onclick="abrirModal('Samuel', '+5574999445000')" disabled>Finalizar Corrida</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Modal para finalizar a corrida -->
+        <div id="modalFinalizar" class="modal">
+            <div class="modal-content">
+                <h2>Finalizar Corrida</h2>
+                <form id="formFinalizar" onsubmit="enviarWhatsApp(event)">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+
+                    <label for="localEmbarque">Local de Embarque:</label>
+                    <input type="text" id="localEmbarque" name="localEmbarque" required>
+
+                    <label for="destino">Destino (Ponto de Referência):</label>
+                    <input type="text" id="destino" name="destino" required>
+
+                    <label for="valor">Valor:</label>
+                    <input type="text" id="valor" name="valor" value="5,00" disabled>
+
+                    <label for="troco">Precisa de troco?</label>
+                    <select id="troco" name="troco" onchange="mostrarDetalhesTroco()">
+                        <option value="Não">Não</option>
+                        <option value="Sim">Sim</option>
+                    </select>
+
+                    <div id="detalhesTroco" style="display:none;">
+                        <label for="valorTroco">Valor do Troco:</label>
+                        <input type="text" id="valorTroco" name="valorTroco">
+                    </div>
+
+                    <input type="hidden" id="motorista" name="motorista">
+                    <input type="hidden" id="telefone" name="telefone">
+
+                    <button type="submit">Enviar Mensagem</button>
+                    <button type="button" class="cancel-button" onclick="fecharModal()">Cancelar</button>
+                </form>
             </div>
         </div>
     </main>
 
-    <!-- Modal -->
-    <div class="modal" id="modalFinalizar">
-        <div class="modal-content">
-            <h2>Finalizar Corrida</h2>
-            <form id="formFinalizar" onsubmit="enviarWhatsApp(event)">
-                <!-- Nome do Passageiro -->
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
-
-                <!-- Local de Embarque e Destino -->
-                <label for="localEmbarque">Local de Embarque:</label>
-                <input type="text" id="localEmbarque" name="localEmbarque" required>
-
-                <label for="destino">Destino (Ponto de Referência):</label>
-                <input type="text" id="destino" name="destino" required>
-
-                <!-- Forma de Pagamento e Troco -->
-                <label for="valor">Valor:</label>
-                <input type="text" id="valor" name="valor" value="5,00" required>
-
-                <label for="troco">Precisa de troco?</label>
-                <select id="troco" name="troco" onchange="mostrarDetalhesTroco()">
-                    <option value="Não">Não</option>
-                    <option value="Sim">Sim</option>
-                </select>
-
-                <!-- Detalhes do Troco -->
-                <div id="detalhesTroco" style="display:none;">
-                    <label for="valorTroco">Valor do Troco:</label>
-                    <input type="text" id="valorTroco" name="valorTroco">
-                </div>
-
-                <input type="hidden" id="motorista">
-                <input type="hidden" id="telefone">
-                <button type="submit">Enviar Mensagem</button>
-                <button type="button" class="cancel-button" onclick="fecharModal()">Cancelar</button>
-            </form>
-        </div>
-    </div>
-
     <script>
         function atualizarHorario() {
-            const data = new Date();
-            const hora = data.getHours();
-            const minutos = data.getMinutes();
-            const segundos = data.getSeconds();
-            document.getElementById('horarioAtual').innerText = `${hora}:${minutos}:${segundos}`;
+            const horarioAtual = new Date();
+            const hora = horarioAtual.getHours();
+            const minutos = horarioAtual.getMinutes();
+            const segundos = horarioAtual.getSeconds();
+            const horaBrasilia = new Date(horarioAtual.toLocaleString("en-US", {timeZone: "America/Sao_Paulo"}));
+
+            document.getElementById("horaAtual").textContent = `${horaBrasilia.getHours()}:${horaBrasilia.getMinutes()}:${horaBrasilia.getSeconds()}`;
+
+            const horarioDeAtendimentoAberto = horaBrasilia.getHours() >= 6 && horaBrasilia.getHours() < 19;
+
+            if (horarioDeAtendimentoAberto) {
+                document.getElementById("horarioAtendimento").style.display = "block";
+                document.getElementById("horarioFechado").style.display = "none";
+                habilitarButtons(true);
+            } else {
+                document.getElementById("horarioAtendimento").style.display = "none";
+                document.getElementById("horarioFechado").style.display = "block";
+                iniciarContagemRegressiva();
+                habilitarButtons(false);
+            }
+        }
+
+        function habilitarButtons(estado) {
+            document.getElementById("btnRodrigo").disabled = !estado;
+            document.getElementById("btnJoseilton").disabled = !estado;
+            document.getElementById("btnVictor").disabled = !estado;
+            document.getElementById("btnSamuel").disabled = !estado;
+        }
+
+        function iniciarContagemRegressiva() {
+            const contador = document.getElementById("contador");
+            const now = new Date();
+            const proximoAbertura = new Date();
+            proximoAbertura.setHours(6, 0, 0, 0); // Próxima abertura às 6:00
+
+            const diff = proximoAbertura - now;
+            if (diff <= 0) {
+                proximoAbertura.setDate(proximoAbertura.getDate() + 1); // Se passou das 19:00, conta para o próximo dia
+            }
+
+            const interval = setInterval(function() {
+                const remainingTime = proximoAbertura - new Date();
+                if (remainingTime <= 0) {
+                    clearInterval(interval);
+                    contador.textContent = "Abertura em breve!";
+                } else {
+                    const hours = Math.floor(remainingTime / (1000 * 60 * 60));
+                    const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+                    contador.textContent = `${hours}h ${minutes}m ${seconds}s`;
+                }
+            }, 1000);
         }
 
         function abrirModal(motorista, telefone) {
-            document.getElementById('modalFinalizar').style.display = 'flex';
-            document.getElementById('motorista').value = motorista;
-            document.getElementById('telefone').value = telefone;
+            document.getElementById("motorista").value = motorista;
+            document.getElementById("telefone").value = telefone;
+            document.getElementById("modalFinalizar").style.display = "flex";
         }
 
         function fecharModal() {
-            document.getElementById('modalFinalizar').style.display = 'none';
-        }
-
-        function mostrarDetalhesTroco() {
-            const troco = document.getElementById('troco').value;
-            const detalhesTroco = document.getElementById('detalhesTroco');
-            if (troco === 'Sim') {
-                detalhesTroco.style.display = 'block';
-            } else {
-                detalhesTroco.style.display = 'none';
-            }
+            document.getElementById("modalFinalizar").style.display = "none";
         }
 
         function enviarWhatsApp(event) {
             event.preventDefault();
-            const nome = document.getElementById('nome').value;
-            const valor = document.getElementById('valor').value;
-            const troco = document.getElementById('troco').value;
-            const valorTroco = document.getElementById('valorTroco').value;
-            const localEmbarque = document.getElementById('localEmbarque').value;
-            const destino = document.getElementById('destino').value;
-            const motorista = document.getElementById('motorista').value;
-            const telefone = document.getElementById('telefone').value;
+            const nome = document.getElementById("nome").value;
+            const localEmbarque = document.getElementById("localEmbarque").value;
+            const destino = document.getElementById("destino").value;
+            const valor = document.getElementById("valor").value;
+            const troco = document.getElementById("troco").value;
+            const valorTroco = document.getElementById("valorTroco").value;
+            const motorista = document.getElementById("motorista").value;
+            const telefone = document.getElementById("telefone").value;
 
-            let mensagem = `Olá, gostaria de finalizar uma corrida.\n` +
-                `👤 Nome: ${nome}\n` +
-                `🚴‍♂️ Mototáxi: ${motorista}\n` +
-                `💵 Valor: R$ ${valor}\n` +
-                `🪙 Troco: ${troco}\n` +
-                `🏍️ Veio da COODMUC`;
-                
-            if (troco === 'Sim') {
-                mensagem += `\n🪙 Troco para: R$ ${valorTroco}\n` +
-                            `📍 Local de Embarque: ${localEmbarque}\n` +
-                            `📍 Destino: ${destino}`;
-            }
+            const mensagem = `Olá! Meu nome é ${nome}, preciso finalizar a corrida. 
+                              Local de Embarque: ${localEmbarque}
+                              Destino: ${destino}
+                              Valor: ${valor}
+                              Preciso de troco: ${troco === "Sim" ? `Sim, R$ ${valorTroco}` : "Não"}`;
 
-            window.open(`https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`, '_blank');
+            const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, '_blank');
             fecharModal();
         }
 
+        function mostrarDetalhesTroco() {
+            const troco = document.getElementById("troco").value;
+            const detalhesTroco = document.getElementById("detalhesTroco");
+            detalhesTroco.style.display = troco === "Sim" ? "block" : "none";
+        }
+
+        // Atualiza o horário imediatamente ao carregar a página
+        atualizarHorario();
+        // Atualiza a cada segundo
         setInterval(atualizarHorario, 1000);
     </script>
 </body>
 </html>
+
