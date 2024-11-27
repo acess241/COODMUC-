@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODEMUC - Corridas Rápidas e Seguras em Uauá!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        header {
+            background-color: #FF5722;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        header img {
+            width: 700px;
+            max-width: 100%;
+            height: auto;
+        }
+        .highlight {
+            background-color: #FFE0B2;
+            border: 2px solid #FF5722;
+            color: #FF5722;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 8px;
+        }
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        .tab {
+            margin-bottom: 20px;
+        }
+        .tab h2 {
+            font-size: 1.5em;
+            color: #FF5722;
+            margin-bottom: 10px;
+        }
+        .block {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            background-color: #ffe0b2;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .block img {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            margin-right: 15px;
+        }
+        .info {
+            font-size: 1.1em;
+            flex: 1;
+        }
+        .info button {
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .info button:hover {
+            background-color: #E64A19;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .modal-content h2 {
+            margin-top: 0;
+            color: #FF5722;
+        }
+        .modal-content label {
+            display: block;
+            margin-top: 10px;
+        }
+        .modal-content input, .modal-content select, .modal-content button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .modal-content button {
+            background-color: #FF5722;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        .modal-content button:hover {
+            background-color: #E64A19;
+        }
+        .cancel-button {
+            background-color: #ddd;
+            color: black;
+            margin-top: 10px;
+        }
+        .cancel-button:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.postimg.cc/Y0vDktML/ololol.jpg" alt="Logo CODEMUC">
+    </header>
+
+    <div class="highlight">
+        Horário de atendimento: das 6:00 às 19:00. Agora são: <span id="horarioAtual"></span>
+    </div>
+
+    <main>
+        <!-- Aba Uauá [SEDE] -->
+        <div class="tab">
+            <h2>Mototáxis Disponíveis - Uauá [SEDE]</h2>
+
+            <!-- Mototáxi de Victor Pereira -->
+            <div class="block">
+                <img src="https://i.postimg.cc/wThbNdLQ/IMG-1764.jpg" alt="Mototáxi de Victor Pereira">
+                <div class="info">
+                    <p><strong>Victor Pereira</strong> - Disponível 🟢</p>
+                    <p>Modelo: Fan 160</p>
+                    <p>Valor: R$ 5,00</p>
+                    <button onclick="abrirModal('Victor Pereira', '55749999442662')">Finalizar Corrida</button>
+                </div>
+            </div>
+
+            <!-- Mototáxi de Rodrigo da Silva -->
+            <div class="block">
+                <img src="https://i.postimg.cc/gJN6LRs1/IMG-2058.jpg" alt="Mototáxi de Rodrigo da Silva">
+                <div class="info">
+                    <p><strong>Rodrigo da Silva</strong> - Disponível 🟢</p>
+                    <p>Modelo: Fan 160 Vermelha</p>
+                    <p>Valor: R$ 5,00</p>
+                    <button onclick="abrirModal('Rodrigo da Silva', '5574999876030')">Finalizar Corrida</button>
+                </div>
+            </div>
+
+            <!-- Mototáxi de Joseilton Santos -->
+            <div class="block">
+                <img src="https://i.postimg.cc/Dz3DDwhD/IMG-1762.jpg" alt="Mototáxi de Joseilton Santos">
+                <div class="info">
+                    <p><strong>Joseilton Santos</strong> - Disponível 🟢</p>
+                    <p>Modelo: Titan 150</p>
+                    <p>Valor: R$ 5,00</p>
+                    <button onclick="abrirModal('Joseilton Santos', '5574999123143')">Finalizar Corrida</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aba Caratacá -->
+        <div class="tab">
+            <h2>Mototáxi Disponível - Caratacá</h2>
+
+            <!-- Mototáxi de Samuel Araujo Silva -->
+            <div class="block">
+                <img src="https://i.postimg.cc/gcSbND0r/IMG-2063.jpg" alt="Mototáxi de Samuel Araujo Silva">
+                <div class="info">
+                    <p><strong>Samuel Araujo Silva</strong> - Disponível 🟢</p>
+                    <p>Modelo: CG FAN 125 Vermelha</p>
+                    <p>Valor: Combinar com o mototaxista</p>
+                    <button onclick="abrirModal('Samuel Araujo Silva', '5574999876030')">Finalizar Corrida</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="modalFinalizar">
+        <div class="modal-content">
+            <h2>Finalizar Corrida</h2>
+            <form id="formFinalizar" onsubmit="enviarWhatsApp(event)">
+                <!-- Nome do Passageiro -->
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <!-- Local de Embarque e Destino -->
+                <label for="localEmbarque">Local de Embarque:</label>
+                <input type="text" id="localEmbarque" name="localEmbarque" required>
+
+                <label for="destino">Destino (Ponto de Referência):</label>
+                <input type="text" id="destino" name="destino" required>
+
+                <!-- Forma de Pagamento e Troco -->
+                <label for="valor">Valor:</label>
+                <input type="text" id="valor" name="valor" value="5,00" required>
+
+                <label for="troco">Precisa de troco?</label>
+                <select id="troco" name="troco" onchange="mostrarDetalhesTroco()">
+                    <option value="Não">Não</option>
+                    <option value="Sim">Sim</option>
+                </select>
+
+                <!-- Detalhes para troco -->
+                <div id="detalhesTroco" style="display: none;">
+                    <label for="valorTroco">Troco para quanto?</label>
+                    <input type="number" id="valorTroco" name="valorTroco">
+
+                    <label for="telefone">Telefone para Contato:</label>
+                    <input type="text" id="telefone" name="telefone" required>
+                </div>
+
+                <button type="submit">Finalizar Corrida</button>
+                <button type="button" class="cancel-button" onclick="fecharModal()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function atualizarHorario() {
+            const data = new Date();
+            const hora = data.getHours();
+            const minutos = data.getMinutes();
+            const segundos = data.getSeconds();
+            document.getElementById('horarioAtual').innerText = `${hora}:${minutos}:${segundos}`;
+        }
+
+        function abrirModal(motorista, telefone) {
+            document.getElementById('modalFinalizar').style.display = 'flex';
+            document.getElementById('motorista').value = motorista;
+            document.getElementById('telefone').value = telefone;
+        }
+
+        function fecharModal() {
+            document.getElementById('modalFinalizar').style.display = 'none';
+        }
+
+        function mostrarDetalhesTroco() {
+            const troco = document.getElementById('troco').value;
+            const detalhesTroco = document.getElementById('detalhesTroco');
+            if (troco === 'Sim') {
+                detalhesTroco.style.display = 'block';
+            } else {
+                detalhesTroco.style.display = 'none';
+            }
+        }
+
+        function enviarWhatsApp(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const valor = document.getElementById('valor').value;
+            const troco = document.getElementById('troco').value;
+            const valorTroco = document.getElementById('valorTroco').value;
+            const localEmbarque = document.getElementById('localEmbarque').value;
+            const destino = document.getElementById('destino').value;
+            const motorista = document.getElementById('motorista').value;
+            const telefone = document.getElementById('telefone').value;
+
+            let mensagem = `Olá, gostaria de finalizar uma corrida.\n` +
+                `👤 Nome: ${nome}\n` +
+                `🚴‍♂️ Mototáxi: ${motorista}\n` +
+                `💵 Valor: R$ ${valor}\n` +
+                `🪙 Troco: ${troco}`;
+                
+            if (troco === 'Sim') {
+                mensagem += `\n🪙 Troco para: R$ ${valorTroco}\n` +
+                            `📍 Local de Embarque: ${localEmbarque}\n` +
+                            `📍 Destino: ${destino}`;
+            }
+
+            window.open(`https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`, '_blank');
+            fecharModal();
+        }
+
+        setInterval(atualizarHorario, 1000);
+    </script>
+</body>
+</html>
