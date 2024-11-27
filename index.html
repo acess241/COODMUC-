@@ -229,8 +229,8 @@
 
                 <!-- Detalhes para troco -->
                 <div id="detalhesTroco" style="display: none;">
-                    <label for="valorTroco">Troco para quanto?</label>
-                    <input type="number" id="valorTroco" name="valorTroco">
+                    <label for="valorTroco">Valor do Troco:</label>
+                    <input type="text" id="valorTroco" name="valorTroco">
                 </div>
 
                 <input type="hidden" id="motorista">
@@ -285,7 +285,8 @@
                 `👤 Nome: ${nome}\n` +
                 `🚴‍♂️ Mototáxi: ${motorista}\n` +
                 `💵 Valor: R$ ${valor}\n` +
-                `🪙 Troco: ${troco}`;
+                `🪙 Troco: ${troco}\n` +
+                `🏍️ Veio da COODMUC`;
                 
             if (troco === 'Sim') {
                 mensagem += `\n🪙 Troco para: R$ ${valorTroco}\n` +
