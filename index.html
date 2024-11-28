@@ -189,7 +189,7 @@
                     <p><strong>Rodrigo</strong> - Disponível 🟢</p>
                     <p>Modelo: Honda Bros 160</p>
                     <p>Valor: R$ 5,00</p>
-                    <button id="btnRodrigo" onclick="abrirModal('Rodrigo', '+5574999441000')" disabled>Finalizar Corrida</button>
+                    <button id="btnRodrigo" onclick="abrirModal('Rodrigo', '+5574999876030')">Finalizar Corrida</button>
                 </div>
             </div>
 
@@ -200,7 +200,7 @@
                     <p><strong>Joseilton</strong> - Disponível 🟢</p>
                     <p>Modelo: Yamaha Factor 125</p>
                     <p>Valor: R$ 5,00</p>
-                    <button id="btnJoseilton" onclick="abrirModal('Joseilton', '+5574999443000')" disabled>Finalizar Corrida</button>
+                    <button id="btnJoseilton" onclick="abrirModal('Joseilton', '+5574999123143')">Finalizar Corrida</button>
                 </div>
             </div>
 
@@ -211,7 +211,7 @@
                     <p><strong>Victor</strong> - Disponível 🟢</p>
                     <p>Modelo: Honda Fan 160</p>
                     <p>Valor: R$ 5,00</p>
-                    <button id="btnVictor" onclick="abrirModal('Victor', '+5574999444000')" disabled>Finalizar Corrida</button>
+                    <button id="btnVictor" onclick="abrirModal('Victor', '+5574999442662')">Finalizar Corrida</button>
                 </div>
             </div>
         </div>
@@ -227,7 +227,7 @@
                     <p><strong>Samuel</strong> - Disponível 🟢</p>
                     <p>Modelo: Honda Fan 150</p>
                     <p>Valor: R$ 5,00</p>
-                    <button id="btnSamuel" onclick="abrirModal('Samuel', '+5574999445000')" disabled>Finalizar Corrida</button>
+                    <button id="btnSamuel" onclick="abrirModal('Samuel', '+5574999421283')">Finalizar Corrida</button>
                 </div>
             </div>
         </div>
@@ -240,95 +240,28 @@
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" required>
 
-                    <label for="localEmbarque">Local de Embarque:</label>
-                    <input type="text" id="localEmbarque" name="localEmbarque" required>
+                    <label for="mototaxi">Mototáxi:</label>
+                    <input type="text" id="mototaxi" name="mototaxi" required disabled>
 
-                    <label for="destino">Destino (Ponto de Referência):</label>
-                    <input type="text" id="destino" name="destino" required>
+                    <label for="whatsapp">Número de WhatsApp:</label>
+                    <input type="text" id="whatsapp" name="whatsapp" required disabled>
 
-                    <label for="valor">Valor:</label>
-                    <input type="text" id="valor" name="valor" value="5,00" disabled>
+                    <label for="valor">Valor da Corrida:</label>
+                    <input type="text" id="valor" name="valor" required disabled>
 
-                    <label for="troco">Precisa de troco?</label>
-                    <select id="troco" name="troco" onchange="mostrarDetalhesTroco()">
-                        <option value="Não">Não</option>
-                        <option value="Sim">Sim</option>
-                    </select>
-
-                    <div id="detalhesTroco" style="display:none;">
-                        <label for="valorTroco">Valor do Troco:</label>
-                        <input type="text" id="valorTroco" name="valorTroco">
-                    </div>
-
-                    <input type="hidden" id="motorista" name="motorista">
-                    <input type="hidden" id="telefone" name="telefone">
-
-                    <button type="submit">Enviar Mensagem</button>
+                    <button type="submit">Finalizar</button>
                     <button type="button" class="cancel-button" onclick="fecharModal()">Cancelar</button>
                 </form>
             </div>
         </div>
+
     </main>
 
     <script>
-        function atualizarHorario() {
-            const horarioAtual = new Date();
-            const hora = horarioAtual.getHours();
-            const minutos = horarioAtual.getMinutes();
-            const segundos = horarioAtual.getSeconds();
-            const horaBrasilia = new Date(horarioAtual.toLocaleString("en-US", {timeZone: "America/Sao_Paulo"}));
-
-            document.getElementById("horaAtual").textContent = `${horaBrasilia.getHours()}:${horaBrasilia.getMinutes()}:${horaBrasilia.getSeconds()}`;
-
-            const horarioDeAtendimentoAberto = horaBrasilia.getHours() >= 6 && horaBrasilia.getHours() < 19;
-
-            if (horarioDeAtendimentoAberto) {
-                document.getElementById("horarioAtendimento").style.display = "block";
-                document.getElementById("horarioFechado").style.display = "none";
-                habilitarButtons(true);
-            } else {
-                document.getElementById("horarioAtendimento").style.display = "none";
-                document.getElementById("horarioFechado").style.display = "block";
-                iniciarContagemRegressiva();
-                habilitarButtons(false);
-            }
-        }
-
-        function habilitarButtons(estado) {
-            document.getElementById("btnRodrigo").disabled = !estado;
-            document.getElementById("btnJoseilton").disabled = !estado;
-            document.getElementById("btnVictor").disabled = !estado;
-            document.getElementById("btnSamuel").disabled = !estado;
-        }
-
-        function iniciarContagemRegressiva() {
-            const contador = document.getElementById("contador");
-            const now = new Date();
-            const proximoAbertura = new Date();
-            proximoAbertura.setHours(6, 0, 0, 0); // Próxima abertura às 6:00
-
-            const diff = proximoAbertura - now;
-            if (diff <= 0) {
-                proximoAbertura.setDate(proximoAbertura.getDate() + 1); // Se passou das 19:00, conta para o próximo dia
-            }
-
-            const interval = setInterval(function() {
-                const remainingTime = proximoAbertura - new Date();
-                if (remainingTime <= 0) {
-                    clearInterval(interval);
-                    contador.textContent = "Abertura em breve!";
-                } else {
-                    const hours = Math.floor(remainingTime / (1000 * 60 * 60));
-                    const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-                    contador.textContent = `${hours}h ${minutes}m ${seconds}s`;
-                }
-            }, 1000);
-        }
-
-        function abrirModal(motorista, telefone) {
-            document.getElementById("motorista").value = motorista;
-            document.getElementById("telefone").value = telefone;
+        function abrirModal(nome, whatsapp) {
+            document.getElementById("mototaxi").value = nome;
+            document.getElementById("whatsapp").value = whatsapp;
+            document.getElementById("valor").value = "R$ 5,00"; // Pode ser modificado conforme a lógica de cálculo
             document.getElementById("modalFinalizar").style.display = "flex";
         }
 
@@ -338,37 +271,54 @@
 
         function enviarWhatsApp(event) {
             event.preventDefault();
-            const nome = document.getElementById("nome").value;
-            const localEmbarque = document.getElementById("localEmbarque").value;
-            const destino = document.getElementById("destino").value;
-            const valor = document.getElementById("valor").value;
-            const troco = document.getElementById("troco").value;
-            const valorTroco = document.getElementById("valorTroco").value;
-            const motorista = document.getElementById("motorista").value;
-            const telefone = document.getElementById("telefone").value;
+            var nome = document.getElementById("nome").value;
+            var mototaxi = document.getElementById("mototaxi").value;
+            var whatsapp = document.getElementById("whatsapp").value;
+            var valor = document.getElementById("valor").value;
+            var mensagem = `Olá, sou o(a) ${nome}, finalizei minha corrida com o mototáxi ${mototaxi}. Valor: ${valor}.`;
 
-            const mensagem = `Olá! Meu nome é ${nome}, preciso finalizar a corrida. 
-                              Local de Embarque: ${localEmbarque}
-                              Destino: ${destino}
-                              Valor: ${valor}
-                              Preciso de troco: ${troco === "Sim" ? `Sim, R$ ${valorTroco}` : "Não"}`;
-
-            const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
-            window.open(url, '_blank');
+            window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(mensagem)}`, '_blank');
             fecharModal();
         }
 
-        function mostrarDetalhesTroco() {
-            const troco = document.getElementById("troco").value;
-            const detalhesTroco = document.getElementById("detalhesTroco");
-            detalhesTroco.style.display = troco === "Sim" ? "block" : "none";
+        function atualizarHorario() {
+            var agora = new Date();
+            var hora = agora.getHours();
+            var minutos = agora.getMinutes();
+            var segundos = agora.getSeconds();
+
+            minutos = minutos < 10 ? "0" + minutos : minutos;
+            segundos = segundos < 10 ? "0" + segundos : segundos;
+
+            var horaFormatada = hora + ":" + minutos + ":" + segundos;
+            document.getElementById("horaAtual").textContent = horaFormatada;
+
+            if (hora >= 6 && hora < 19) {
+                document.getElementById("horarioAtendimento").style.display = "block";
+                document.getElementById("horarioFechado").style.display = "none";
+            } else {
+                document.getElementById("horarioAtendimento").style.display = "none";
+                document.getElementById("horarioFechado").style.display = "block";
+
+                var tempoRestante = calcularTempoRestante(hora, minutos);
+                document.getElementById("contador").textContent = tempoRestante;
+            }
         }
 
-        // Atualiza o horário imediatamente ao carregar a página
-        atualizarHorario();
-        // Atualiza a cada segundo
+        function calcularTempoRestante(hora, minutos) {
+            var horaAbertura = 6;
+            var minutosAbertura = 0;
+            var tempoRestanteMinutos = ((horaAbertura * 60 + minutosAbertura) - (hora * 60 + minutos));
+            if (tempoRestanteMinutos < 0) {
+                tempoRestanteMinutos += 1440;
+            }
+
+            var horasRestantes = Math.floor(tempoRestanteMinutos / 60);
+            var minutosRestantes = tempoRestanteMinutos % 60;
+            return `${horasRestantes} horas e ${minutosRestantes} minutos`;
+        }
+
         setInterval(atualizarHorario, 1000);
     </script>
 </body>
 </html>
-
